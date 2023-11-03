@@ -71,10 +71,7 @@ def get_data(html):
             img = ''
         finally:
             list_photo.append(img)
-    dict_ = {}
-    for key in list_id:
-        for value in zagolovok_list[0:20]:
-            dict_[key] = value
+    dict_ = dict(zip(list_id,zagolovok_list))
 
     list_.append(dict_)
     list_.append(list_href)
@@ -86,28 +83,85 @@ def get_data(html):
 start_markup = telebot.types.InlineKeyboardMarkup()
 btn1= telebot.types.InlineKeyboardButton('1', callback_data='1')
 btn2= telebot.types.InlineKeyboardButton('2', callback_data='2')
-list_ = [btn1,btn2]
-for x in list_:
-    start_markup.add(x)
+btn3= telebot.types.InlineKeyboardButton('3', callback_data='3')
+btn4= telebot.types.InlineKeyboardButton('4', callback_data='4')
+btn5= telebot.types.InlineKeyboardButton('5', callback_data='5')
+btn6= telebot.types.InlineKeyboardButton('6', callback_data='6')
+btn7= telebot.types.InlineKeyboardButton('7', callback_data='7')
+btn8= telebot.types.InlineKeyboardButton('8', callback_data='8')
+btn9= telebot.types.InlineKeyboardButton('9', callback_data='9')
+btn10= telebot.types.InlineKeyboardButton('10', callback_data='10')
+btn11= telebot.types.InlineKeyboardButton('11', callback_data='11')
+btn12= telebot.types.InlineKeyboardButton('12', callback_data='12')
+btn13= telebot.types.InlineKeyboardButton('13', callback_data='13')
+btn14= telebot.types.InlineKeyboardButton('14', callback_data='14')
+btn15= telebot.types.InlineKeyboardButton('15', callback_data='15')
+btn16= telebot.types.InlineKeyboardButton('16', callback_data='16')
+btn17= telebot.types.InlineKeyboardButton('17', callback_data='17')
+btn18= telebot.types.InlineKeyboardButton('18', callback_data='18')
+btn19= telebot.types.InlineKeyboardButton('19', callback_data='19')
+btn20= telebot.types.InlineKeyboardButton('20', callback_data='20')
 
+
+start_markup.add(btn1,btn2,btn3,btn5,btn6,btn7,btn8,btn9,btn10,btn11,btn12,btn13,btn14,btn15,btn16,btn17,btn18,btn19,btn20)
 
 
 
 @bot.callback_query_handler(func=lambda callback: True)
 def get_z(callback):
     dict_ = get_data(get_html(NEW_URL))
-    # if callback.data == '1':
-    #     bot.send_message(callback.message.chat.id, f'You choose 1')
-    # elif callback.data == '2':
-    #     bot.send_message(callback.message.chat.id, f'You choose 2')
+    textt = ['aasd']
+    if callback.data == '1':
+        textt = get_mas_with_opis(dict_[1][int(btn1.callback_data)-1])
+    if callback.data == '2':
+        textt = get_mas_with_opis(dict_[1][int(btn2.callback_data)-1])
+    if callback.data == '3':
+        textt = get_mas_with_opis(dict_[1][int(btn3.callback_data)-1])
+    if callback.data == '4':
+        textt = get_mas_with_opis(dict_[1][int(btn4.callback_data)-1])
+    if callback.data == '5':
+        textt = get_mas_with_opis(dict_[1][int(btn5.callback_data)-1])
+    if callback.data == '6':
+        textt = get_mas_with_opis(dict_[1][int(btn6.callback_data)-1])
+    if callback.data == '7':
+        textt = get_mas_with_opis(dict_[1][int(btn7.callback_data)-1])
+    if callback.data == '8':
+        textt = get_mas_with_opis(dict_[1][int(btn8.callback_data)-1])
+    if callback.data == '9':
+        textt = get_mas_with_opis(dict_[1][int(btn9.callback_data)-1])
+    if callback.data == '10':
+        textt = get_mas_with_opis(dict_[1][int(btn10.callback_data)-1])
+    if callback.data == '11':
+        textt = get_mas_with_opis(dict_[1][int(btn11.callback_data)-1])
+    if callback.data == '12':
+        textt = get_mas_with_opis(dict_[1][int(btn12.callback_data)-1])
+    if callback.data == '13':
+        textt = get_mas_with_opis(dict_[1][int(btn13.callback_data)-1])
+    if callback.data == '14':
+        textt = get_mas_with_opis(dict_[1][int(btn14.callback_data)-1])
+    if callback.data == '15':
+        textt = get_mas_with_opis(dict_[1][int(btn15.callback_data)-1])
+    if callback.data == '16':
+        textt = get_mas_with_opis(dict_[1][int(btn16.callback_data)-1])
+    if callback.data == '17':
+        textt = get_mas_with_opis(dict_[1][int(btn17.callback_data)-1])
+    if callback.data == '18':
+        textt = get_mas_with_opis(dict_[1][int(btn18.callback_data)-1])
+    if callback.data == '19':
+        textt = get_mas_with_opis(dict_[1][int(btn19.callback_data)-1])
+    if callback.data == '20':
+        textt = get_mas_with_opis(dict_[1][int(btn20.callback_data)-1])
+    
+    
+
     description= telebot.types.InlineKeyboardButton('description', callback_data='description')
     photo= telebot.types.InlineKeyboardButton('photo', callback_data='photo')
     markup = telebot.types.InlineKeyboardMarkup()
     markup.row(description,photo)
     bot.send_message(callback.message.chat.id, f'some title news you can see Description of this news and Photo',reply_markup=markup)
     if callback.data == 'description':
-        textt = get_mas_with_opis(dict_[1][int(i)-1])
         bot.send_message(callback.message.chat.id,textt)
+        
     
 
 
